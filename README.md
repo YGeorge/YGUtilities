@@ -5,4 +5,5 @@ Collection of useful Objective-C Categories
 
 ##Foundation Framework
 
-*NSDate
+* NSDate
+* NSMutableArray
