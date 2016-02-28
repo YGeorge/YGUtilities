@@ -15,9 +15,13 @@
 
 - (void)eachWithIndex:(void (^)(id object, NSUInteger index))block;
 
+- (NSArray *)sortWithKey:(NSString *)key ascending:(BOOL)ascending;
+
 - (NSArray *)arrayByRemovingObject:(id)object;
 
 - (NSArray *)arrayByRemovingObjectAtIndex:(NSUInteger)index;
+
+- (NSArray *)arrayByRemovingObjectWithPredicate:(BOOL (^)(id obj))predicate;
 
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index;
 

@@ -22,6 +22,11 @@
     }];
 }
 
+- (NSArray *)sortWithKey:(NSString *)key ascending:(BOOL)ascending {
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
+    return [self sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+}
+
 - (NSArray *)arrayByRemovingObject:(id)object {
     NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
     [copy removeObject:object];
@@ -32,6 +37,17 @@
     NSMutableArray *copy = [NSMutableArray arrayWithArray:self];
     [copy removeObjectAtIndex:index];
     return [copy copy];
+}
+
+- (NSArray *)arrayByRemovingObjectWithPredicate:(BOOL (^)(id obj))predicate {
+    NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for (id obj in self) {
+        BOOL shouldRemove = predicate(obj);
+        if (!shouldRemove) {
+            [newArray addObject:obj];
+        }
+    }
+    return [newArray copy];
 }
 
 - (NSArray *)arrayByInsertingObject:(id)object atIndex:(NSUInteger)index {
