@@ -15,7 +15,7 @@
 
 - (void)eachWithIndex:(void (^)(id object, NSUInteger index))block;
 
-- (NSArray *)sortWithKey:(NSString *)key ascending:(BOOL)ascending;
+- (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
 
 - (NSArray *)arrayByRemovingObject:(id)object;
 

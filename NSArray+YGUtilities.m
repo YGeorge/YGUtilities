@@ -22,7 +22,7 @@
     }];
 }
 
-- (NSArray *)sortWithKey:(NSString *)key ascending:(BOOL)ascending {
+- (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending {
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
     return [self sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 }
