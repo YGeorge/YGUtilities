@@ -24,7 +24,7 @@
 
 - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending {
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
-    return [self sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+    return [self sortedArrayUsingDescriptors:@[sort]];
 }
 
 - (NSArray *)arrayByRemovingObject:(id)object {
@@ -86,6 +86,50 @@
         [copy exchangeObjectAtIndex:j withObjectAtIndex:(NSUInteger) i];
     }
     return [copy copy];
+}
+
+@end
+
+@implementation NSMutableArray (YGUtilities)
+
+- (void)sortWithKey:(NSString *)key ascending:(BOOL)ascending {
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
+    [self sortUsingDescriptors:@[sort]];
+}
+
+- (void)removeObjectsWithPredicate:(BOOL (^)(id obj))predicate {
+    if (predicate != nil) {
+        NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:self.count];
+        for (id obj in self) {
+            BOOL shouldRemove = predicate(obj);
+            if (!shouldRemove) {
+                [newArray addObject:obj];
+            }
+        }
+        [self setArray:newArray];
+    }
+}
+
+- (void)mergeObjectsFromArray:(NSArray *)array {
+    NSSet *set = [NSSet setWithArray:self];
+    for (id object in array) {
+        if (![set containsObject:object]) [self addObject:object];
+    }
+}
+
+- (void)removeDuplicates {
+    [self setArray:[[NSOrderedSet orderedSetWithArray:self] array]];
+}
+
+- (void)reverse {
+    [self setArray:[[self reverseObjectEnumerator] allObjects]];
+}
+
+- (void)shuffle {
+    for (NSInteger i = (NSInteger)[self count] - 1; i > 0; i--) {
+        NSUInteger j = (NSUInteger)arc4random_uniform((uint32_t)i + 1);
+        [self exchangeObjectAtIndex:j withObjectAtIndex:(NSUInteger)i];
+    }
 }
 
 @end

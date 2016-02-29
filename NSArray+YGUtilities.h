@@ -36,3 +36,19 @@
 - (NSArray *)shuffledArray;
 
 @end
+
+@interface NSMutableArray (YGUtilities)
+
+- (void)sortWithKey:(NSString *)key ascending:(BOOL)ascending;
+
+- (void)removeObjectsWithPredicate:(BOOL (^)(id obj))predicate;
+
+- (void)mergeObjectsFromArray:(NSArray *)array;
+
+- (void)removeDuplicates;
+
+- (void)reverse;
+
+- (void)shuffle;
+
+@end
