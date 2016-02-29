@@ -5,7 +5,7 @@ Collection of useful Objective-C Categories
 
 ##Foundation Framework
 
-* NSDate
+* **NSDate**
   * + (NSString *)stringWithDate:(NSDate *)date format:(NSString *)format;
   * + (NSDate *)dateWithYear:(NSInteger)year month:(NSUInteger)month day:(NSUInteger)day;
   * + (NSDate *)dateWithString:(NSString *)dateStr format:(NSString *)format;
@@ -23,7 +23,7 @@ Collection of useful Objective-C Categories
   * - (BOOL)isLaterThanDate:(NSDate *)aDate;
   * - (BOOL)isInFuture;
   * - (BOOL)isInPast;
-* NSArray
+* **NSArray**
   * - (void)each:(void (^)(id object))block;
   * - (void)eachWithIndex:(void (^)(id object, NSUInteger index))block;
   * - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
@@ -36,7 +36,7 @@ Collection of useful Objective-C Categories
   * - (NSArray *)uniqueObjects;
   * - (NSArray *)reversedArray;
   * - (NSArray *)shuffledArray;
-* NSMutableArray
+* **NSMutableArray**
   * - (void)sortWithKey:(NSString *)key ascending:(BOOL)ascending;
   * - (void)removeObjectsWithPredicate:(BOOL (^)(id obj))predicate;
   * - (void)mergeObjectsFromArray:(NSArray *)array;
