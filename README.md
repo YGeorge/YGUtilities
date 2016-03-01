@@ -6,9 +6,8 @@ Collection of useful Objective-C Categories
 ##Foundation Framework
 
 * NSDate
-  * + (NSString *)stringWithDate:(NSDate *)date format:(NSString *)format;
   * + (NSDate *)dateWithYear:(NSInteger)year month:(NSUInteger)month day:(NSUInteger)day;
-  * + (NSDate *)dateWithString:(NSString *)dateStr format:(NSString *)format;
+  * + (NSDate *)dateWithString:(NSString *)date format:(NSString *)format;
   * - (NSDate *)dateByAddingDays:(NSUInteger)days;
   * - (NSDate *)offsetYears:(NSInteger)numYears;
   * - (NSDate *)offsetMonths:(NSInteger)numMonths;
@@ -16,11 +15,11 @@ Collection of useful Objective-C Categories
   * - (NSDate *)offsetHours:(NSInteger)numHours;
   * - (NSDate *)previousDay;
   * - (NSDate *)nextDay;
-  * - (BOOL)isEqualToDateIgnoringTime:(NSDate *)aDate;
-  * - (BOOL)isSameDay:(NSDate *)anotherDate;
+  * - (BOOL)isEqualToDateIgnoringTime:(NSDate *)date;
+  * - (BOOL)isSameDay:(NSDate *)date;
   * - (BOOL)isToday;
-  * - (BOOL)isEarlierThanDate:(NSDate *)aDate;
-  * - (BOOL)isLaterThanDate:(NSDate *)aDate;
+  * - (BOOL)isEarlierThanDate:(NSDate *)date;
+  * - (BOOL)isLaterThanDate:(NSDate *)date;
   * - (BOOL)isInFuture;
   * - (BOOL)isInPast;
 * NSArray

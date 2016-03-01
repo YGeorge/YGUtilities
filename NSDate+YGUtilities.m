@@ -10,13 +10,6 @@
 
 @implementation NSDate (YGUtilities)
 
-+ (NSString *)stringWithDate:(NSDate *)date format:(NSString *)format {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:format];
-    NSString *result = [dateFormatter stringFromDate:date];
-    return result;
-}
-
 + (NSDate *)dateWithYear:(NSInteger)year month:(NSUInteger)month day:(NSUInteger)day {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -26,10 +19,10 @@
     return [calendar dateFromComponents:components];
 }
 
-+ (NSDate *)dateWithString:(NSString *)dateStr format:(NSString *)format {
++ (NSDate *)dateWithString:(NSString *)date format:(NSString *)format {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:format];
-    NSDate *result = [dateFormatter dateFromString:dateStr];
+    NSDate *result = [dateFormatter dateFromString:date];
     return result;
 }
 
@@ -87,10 +80,17 @@
     return [self dateByAddingTimeInterval:86400];
 }
 
-- (BOOL)isSameDay:(NSDate *)anotherDate {
+- (NSString *)stringWithFormat:(NSString *)format {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    NSString *result = [dateFormatter stringFromDate:self];
+    return result;
+}
+
+- (BOOL)isSameDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *fromDate = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:self];
-    NSDateComponents *fromAnotherDate = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:anotherDate];
+    NSDateComponents *fromAnotherDate = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     return ([fromDate year] == [fromAnotherDate year]
             && [fromDate month] == [fromAnotherDate month]
             && [fromDate day] == [fromAnotherDate day]);
@@ -99,6 +99,7 @@
 - (BOOL)isToday {
     return [self isSameDay:[NSDate date]];
 }
+
 - (BOOL)isEqualToDateIgnoringTime:(NSDate *)date {
     NSCalendarUnit components = (NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear |
             NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
@@ -109,12 +110,12 @@
             (components1.day == components2.day));
 }
 
-- (BOOL)isEarlierThanDate:(NSDate *)aDate {
-    return ([self compare:aDate] == NSOrderedAscending);
+- (BOOL)isEarlierThanDate:(NSDate *)date {
+    return ([self compare:date] == NSOrderedAscending);
 }
 
-- (BOOL)isLaterThanDate:(NSDate *)aDate {
-    return ([self compare:aDate] == NSOrderedDescending);
+- (BOOL)isLaterThanDate:(NSDate *)date {
+    return ([self compare:date] == NSOrderedDescending);
 }
 
 - (BOOL)isInFuture {
@@ -124,6 +125,5 @@
 - (BOOL)isInPast {
     return ([self isEarlierThanDate:[NSDate date]]);
 }
-
 
 @end

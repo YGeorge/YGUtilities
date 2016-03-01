@@ -10,11 +10,9 @@
 
 @interface NSDate (YGUtilities)
 
-+ (NSString *)stringWithDate:(NSDate *)date format:(NSString *)format;
-
 + (NSDate *)dateWithYear:(NSInteger)year month:(NSUInteger)month day:(NSUInteger)day;
 
-+ (NSDate *)dateWithString:(NSString *)dateStr format:(NSString *)format;
++ (NSDate *)dateWithString:(NSString *)date format:(NSString *)format;
 
 - (NSDate *)dateByAddingDays:(NSUInteger)days;
 
@@ -30,15 +28,17 @@
 
 - (NSDate *)nextDay;
 
-- (BOOL)isEqualToDateIgnoringTime:(NSDate *)aDate;
+- (NSString *)stringWithFormat:(NSString *)format;
 
-- (BOOL)isSameDay:(NSDate *)anotherDate;
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *)date;
+
+- (BOOL)isSameDay:(NSDate *)date;
 
 - (BOOL)isToday;
 
-- (BOOL)isEarlierThanDate:(NSDate *)aDate;
+- (BOOL)isEarlierThanDate:(NSDate *)date;
 
-- (BOOL)isLaterThanDate:(NSDate *)aDate;
+- (BOOL)isLaterThanDate:(NSDate *)date;
 
 - (BOOL)isInFuture;
 
