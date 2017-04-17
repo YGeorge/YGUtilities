@@ -21,6 +21,8 @@
 
 - (BOOL)containsString:(NSString *)string;
 
+- (BOOL)startsWith:(NSString *)string;
+
 #pragma mark Size
 
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width;

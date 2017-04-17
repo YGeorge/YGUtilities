@@ -41,6 +41,11 @@
     return rang.location != NSNotFound;
 }
 
+- (BOOL)startsWith:(NSString *)string {
+    if ([self length] < [string length]) return NO;
+    return [string isEqualToString:[self substringFrom:0 to:[string length]]];
+}
+
 #pragma mark Size
 
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToWidth:(CGFloat)width {
