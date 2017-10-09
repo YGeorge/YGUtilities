@@ -15,4 +15,24 @@
     return imagePath;
 }
 
+- (void)serializeToDictionary:(void (^)(NSMutableDictionary *dictionary))dictionary failure:(void (^)(NSError *))failure {
+    NSError *jsonError;
+    NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:self options:NSJSONReadingMutableContainers error:&jsonError];
+    if (!jsonError) {
+        dictionary(dict);
+    } else {
+        failure(jsonError);
+    }
+}
+
+- (void)serializeToArray:(void (^)(NSArray *array))array failure:(void (^)(NSError *))failure {
+    NSError *jsonError;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:self options:0 error:&jsonError];
+    if (!jsonError) {
+        array(jsonArray);
+    } else {
+        failure(jsonError);
+    }
+}
+
 @end

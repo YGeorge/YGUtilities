@@ -8,5 +8,7 @@
 @interface NSData (YGUtilities)
 
 - (NSString *)writeToDocumentDirectoryWithName:(NSString *)fileName;
+- (void)serializeToDictionary:(void (^)(NSMutableDictionary *result))dictionary failure:(void (^)(NSError *))failure;
+- (void)serializeToArray:(void (^)(NSArray *result))array failure:(void (^)(NSError *))failure;
 
 @end
